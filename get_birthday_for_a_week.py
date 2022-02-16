@@ -11,12 +11,9 @@ users = [
     },
     {
         "name": "Till",
-        "birthday": "2000-02-19"
+        "birthday": "2000-02-18"
     }
 ]
-
-"""Monday: Bill, Jill
-Friday: Kim, Jan"""
 
 
 def get_birthdays(users_list):
@@ -66,15 +63,15 @@ def get_birthdays_per_week():
             if temp_day == 'Saturday' or temp_day == 'Sunday':
                 temp_day = 'Monday'
 
-            rez_str += temp_day + ': '
             for key, value in rez_di.items():
-
                 if key == day:
-
                     final_di[temp_day] += [value]
 
     return final_di
     pass
 
 
-print(get_birthdays_per_week())
+di = get_birthdays_per_week()
+for i in di:
+    if not di[i] == []:
+        print(i, di[i])
