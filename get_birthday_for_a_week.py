@@ -3,15 +3,15 @@ import datetime
 users = [
     {
         "name": "Bill",
-        "birthday": "1998-02-08"
+        "birthday": "1998-02-18"
     },
     {
         "name": "Giil",
-        "birthday": "1999-02-10"
+        "birthday": "1999-02-20"
     },
     {
         "name": "Till",
-        "birthday": "2000-02-10"
+        "birthday": "2000-02-19"
     }
 ]
 
@@ -33,7 +33,7 @@ def get_birthdays(users_list):
     return li_days, li_names
 
 
-# rint(get_birthdays(users))
+# print(get_birthdays(users))
 
 
 def get_birthdays_per_week():
@@ -54,18 +54,26 @@ def get_birthdays_per_week():
     names_list = get_birthdays(users)[1]
     # словник ДН: Ім'я
     rez_di = dict(zip(birthdays_list, names_list))
+    final_di = {'Monday': [], 'Tuesday': [],
+                'Wednesday': [], 'Thursday': [], 'Friday': []}
     for day in nextweek_list:
         if day in birthdays_list:
+
             # день для привітання
             temp_day = day.split()[0]
+
             # день для привітання + імена іменинників
+            if temp_day == 'Saturday' or temp_day == 'Sunday':
+                temp_day = 'Monday'
+
             rez_str += temp_day + ': '
             for key, value in rez_di.items():
-                if key == day:
-                    rez_str += value + ', '
-            rez_str += '\n'
 
-    return rez_str
+                if key == day:
+
+                    final_di[temp_day] += [value]
+
+    return final_di
     pass
 
 
