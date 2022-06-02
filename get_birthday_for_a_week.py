@@ -2,12 +2,12 @@ from datetime import datetime
 
 # тестовий список
 users = [
-    {'name': 'Ivan', 'birthday': '18-05-1990'},
-    {'name': 'Bohdan', 'birthday': '17-05-1990'},
-    {'name': 'Sviatoslav', 'birthday': '22-05-1990'},
-    {'name': 'Halyna', 'birthday': '17-05-1990'},
-    {'name': 'Mariya', 'birthday': '22-05-1990'},
-    {'name': 'Hanna', 'birthday': '20-05-1990'}]
+    {'name': 'Ivan', 'birthday': '05-06-1990'},
+    {'name': 'Bohdan', 'birthday': '03-06-1990'},
+    {'name': 'Sviatoslav', 'birthday': '02-06-1990'},
+    {'name': 'Halyna', 'birthday': '03-06-1990'},
+    {'name': 'Mariya', 'birthday': '02-06-1990'},
+    {'name': 'Hanna', 'birthday': '05-06-1990'}]
 
 
 def get_birthdays_per_week(users: list):
@@ -22,8 +22,10 @@ def get_birthdays_per_week(users: list):
                 'Thursday': [], 'Friday': [], 'Saturday': [], 'Sunday': []}
     # словник для зберігання списків іменинників цього тижня
     for j in range(len(li_birthday)):
+        # міняю рік дня народження на поточний рік
+        j_with_current_year = li_birthday[j][:-4] + str(today.year)
         # переводжу день і місяць народження в datetime
-        a = datetime.strptime(li_birthday[j], '%d-%m-%Y').date()
+        a = datetime.strptime(j_with_current_year, '%d-%m-%Y').date()
         # якщо місяць == нинішньому і день == сьогодні+7 -> додаю в словник
         if today.day <= a.day <= (today.day + 7) and today.month == a.month:
             rez_dict[a.strftime('%A')].append(li_names[j])
